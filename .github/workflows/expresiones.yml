@@ -1,0 +1,39 @@
+name: Expresiones
+run-name: Aprendiendo expresiones
+on: 
+  workflow_dispatch:
+    inputs:
+      edad:
+        description: 'Edad'
+        required: true
+        type: integer
+      nombre:
+        description: 'Tu nombre'
+        required: true
+        default: 'Gerardo'
+        type: string
+      ciudad: 
+        description: 'Tu ciudad'
+        required: false
+        default: 'Guadalajara'
+        type: string
+jobs:
+  mayor: 
+    if: ${{ inputs.edad >= 18 }}
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Correr script
+        run: echo ${{ inputs.nombre }} es mayor de edad
+  menor: 
+    if: ${{ inputs.edad < 18 }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Correr script
+        run: echo ${{ inputs.nombre }} es menor de edad
+  ciudad: 
+    if: ${{ inputs.ciuad == 'Guadalajara' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Correr script
+        run: echo ${{ inputs.nombre }} vive en ${{ inputs.ciudad }}
+  
