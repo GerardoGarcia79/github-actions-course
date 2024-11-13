@@ -1,0 +1,41 @@
+name: Triggers
+run-name: Aprendiento triggers
+on:
+  push: 
+    branches: 
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths: 
+      - '**.js'
+  issues: 
+    types:
+      - labeled
+  workflow_dispatch:
+    inputs:
+      lenguaje_favorito: 
+        description: 'Lenguaje favorito'
+        default: JavaScript
+        required: true
+        type: choice
+        options:
+        - Python
+        - JavaScript
+        - Java
+      name: 
+        description: 'Tu nombre'
+        required: true
+        default: Gerardo
+        type: string
+  schedule:
+    - cron: '15 22 * * *'
+jobs:
+  hola-mundo-manual:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.1.0
+      - name: Run file
+        run: node main.js
