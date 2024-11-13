@@ -1,0 +1,19 @@
+name: Trigger pull request
+on:
+  pull_request:
+    types: [opened, labeled]
+    branches:
+      - 'aprendiendo-github-actions/**'
+    paths:
+        - '**.js'
+jobs:
+  onPull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.1.0
+      - name: Run js 
+        run: node main.js
+  
