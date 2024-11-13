@@ -1,0 +1,13 @@
+name: Variables
+run-name: Variables
+on: push
+env: 
+  SALUDO: Hola
+jobs:
+  saludar:
+    runs-on: ubuntu-latest
+    env:
+      NOMBRE: Gerardo
+    steps:
+      - name: Imprimir saludo
+        run: echo "$SALUDO $NOMBRE"
